@@ -1,12 +1,32 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <component :is="layoutComponent.bind.is" v-bind="layoutComponent.bind"/>
   </div>
-  <router-view/>
 </template>
 
-<style>
+<script>
+import LoggedOutAdminLayout from '@/views/layouts/LoggedOutAdminLayout.vue';
+
+export default {
+  name: 'App',
+  computed: {
+    layoutComponent() {
+      return this.loggedOutAdminLayoutComponent;
+    },
+    loggedOutAdminLayoutComponent() {
+      return {
+        bind: {
+          is: LoggedOutAdminLayout,
+        },
+      };
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+@import "@/assets/css/global.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
