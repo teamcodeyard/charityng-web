@@ -11,4 +11,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#admin-layout {
+}
 </style>

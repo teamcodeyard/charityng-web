@@ -1,3 +1,6 @@
 {
-  "greetings.welcome": "Üdv %{name}!"
+  "admin.loginScreen.form.title": "Admin bejelentkezés",
+  "admin.loginScreen.form.email.placeholder": "E-mail",
+  "admin.loginScreen.form.password.placeholder": "Password",
+  "admin.loginScreen.form.submitButton.title": "Login"
 }

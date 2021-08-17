@@ -1,16 +1,24 @@
 <template>
   <div>
-    <component :is="layoutComponent.bind.is" v-bind="layoutComponent.bind"/>
+    <component :is="layoutComponent.bind.is" v-bind="layoutComponent.bind" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import LoggedOutAdminLayout from '@/views/layouts/LoggedOutAdminLayout.vue';
+import AdminLayout from '@/views/layouts/AdminLayout.vue';
 
 export default {
   name: 'App',
   computed: {
+    ...mapGetters({
+      loggedInAdminUser: 'adminUsers/adminUser',
+    }),
     layoutComponent() {
+      if (this.loggedInAdminUser) {
+        return this.adminLayoutComponent;
+      }
       return this.loggedOutAdminLayoutComponent;
     },
     loggedOutAdminLayoutComponent() {
@@ -20,12 +28,19 @@ export default {
         },
       };
     },
+    adminLayoutComponent() {
+      return {
+        bind: {
+          is: AdminLayout,
+        },
+      };
+    },
   },
 };
 </script>
 
 <style lang="scss">
-@import "@/assets/css/global.scss";
+@import '@/assets/css/global.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
