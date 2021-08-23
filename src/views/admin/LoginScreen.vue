@@ -65,7 +65,9 @@ export default {
       this.authenticate({
         email: this.email,
         password: this.password,
-        deviceId: 'TODOWEB',
+        deviceId: 'TODOWEB', // TODO: use deviceId
+      }).then(() => {
+        window.location.href = '/admin';
       });
     },
   },

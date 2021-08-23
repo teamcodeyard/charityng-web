@@ -15,6 +15,7 @@ export default {
     authenticate: async (ctx, userParams) => {
       const response = await api.authenticate(userParams);
       ctx.commit('setAdminUser', response.data);
+      return response.data;
     },
   },
 };
