@@ -67,7 +67,7 @@ export default {
         password: this.password,
         deviceId: 'TODOWEB', // TODO: use deviceId
       }).then(() => {
-        window.location.href = '/admin';
+        window.location.href = '/admin/users';
       });
     },
   },

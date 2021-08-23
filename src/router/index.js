@@ -16,7 +16,7 @@ const routes = [
     },
   },
   {
-    path: '/admin',
+    path: '/admin/users',
     name: 'UserListScreen',
     component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/UserListScreen.vue'),
   },

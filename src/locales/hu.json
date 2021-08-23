@@ -2,5 +2,9 @@
   "admin.loginScreen.form.title": "Admin bejelentkezés",
   "admin.loginScreen.form.email.placeholder": "E-mail",
   "admin.loginScreen.form.password.placeholder": "Password",
-  "admin.loginScreen.form.submitButton.title": "Login"
+  "admin.loginScreen.form.submitButton.title": "Login",
+  "admin.layout.navbar.userList": "Users",
+  "admin.layout.navbar.campaignList": "Campaigns",
+  "admin.layout.navbar.organisation": "Organisation",
+  "admin.layout.navbar.logout": "Log out"
 }

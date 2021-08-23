@@ -1,17 +1,10 @@
-@import "~bootstrap/scss/bootstrap-grid";
-@import "~bootstrap/scss/bootstrap-reboot";
+/*
+* Bootstrap imports
+*/
+@import "~bootstrap/scss/bootstrap";
 
 /*
-  * Bootstrap optional imports
-  */
-
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/utilities";
-@import "~bootstrap/scss/_input-group";
-
-/*
-  * Animate.css
-  */
+* Animate.css
+*/
 
 @import "~animate.css";
