@@ -32,6 +32,7 @@ export default {
       localValue: this.modelValue,
     };
   },
+  emits: ['submit'],
   watch: {
     modelValue(val) {
       this.localValue = val;

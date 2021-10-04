@@ -1,6 +1,10 @@
 <template>
   <div>
     <component :is="layoutComponent.bind.is" v-bind="layoutComponent.bind" />
+    <modal
+      v-if="modalContentComponents"
+      :modalContentComponents="modalContentComponents"
+    />
   </div>
 </template>
 
@@ -8,9 +12,20 @@
 import { mapGetters } from 'vuex';
 import LoggedOutAdminLayout from '@/views/layouts/LoggedOutAdminLayout.vue';
 import AdminLayout from '@/views/layouts/AdminLayout.vue';
+import Modal from '@/components/elements/Modal.vue';
 
 export default {
   name: 'App',
+  components: {
+    Modal,
+  },
+  data: () => ({
+    modalContentComponents: undefined,
+  }),
+  created() {
+    this.$eventBus.on('showModal', this.showModal);
+    this.$eventBus.on('hideModal', this.hideModal);
+  },
   computed: {
     ...mapGetters({
       loggedInAdminUser: 'adminUsers/adminUser',
@@ -36,6 +51,14 @@ export default {
       };
     },
   },
+  methods: {
+    showModal(modalContentComponents) {
+      this.modalContentComponents = modalContentComponents;
+    },
+    hideModal() {
+      this.modalContentComponents = undefined;
+    },
+  },
 };
 </script>
 
@@ -46,7 +69,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

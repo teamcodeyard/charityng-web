@@ -20,6 +20,36 @@ const routes = [
     name: 'UserListScreen',
     component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/UserListScreen.vue'),
   },
+  {
+    path: '/admin/campaigns',
+    name: 'CampaignListScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/CampaignListScreen.vue'),
+  },
+  {
+    path: '/admin/users/:userId',
+    name: 'UserProfileScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/UserProfileScreen.vue'),
+  },
+  {
+    path: '/admin/campaigns/:campaignId',
+    name: 'CampaignDetailsScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/CampaignDetailsScreen.vue'),
+  },
+  {
+    path: '/admin/campaigns/:campaignId/resources/:resourceId',
+    name: 'ResourceDetailsScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/ResourceDetailsScreen.vue'),
+  },
+  {
+    path: '/admin/campaigns/:campaignId/resources/:resourceId/fulfillments/:fulfillmentId',
+    name: 'FulfillmentDetailsScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/FulfillmentDetailsScreen.vue'),
+  },
+  {
+    path: '/admin/organisation',
+    name: 'OrganisationScreen',
+    component: () => import(/* webpackChunkName: "user-list-screen" */ '@/views/admin/OrganisationScreen.vue'),
+  },
 ];
 
 const router = createRouter({

@@ -34,5 +34,6 @@ export default {
 <style lang="scss" scoped>
 .base-button {
   cursor: pointer;
+  text-align: center;
 }
 </style>

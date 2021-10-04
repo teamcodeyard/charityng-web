@@ -1,7 +1,9 @@
 <template>
   <div id="admin-layout">
     <admin-navbar @logout="logout" />
-    <router-view />
+    <div id="admin-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -24,5 +26,8 @@ export default {
 
 <style lang="scss" scoped>
 #admin-layout {
+  #admin-content {
+    margin: 20px;
+  }
 }
 </style>

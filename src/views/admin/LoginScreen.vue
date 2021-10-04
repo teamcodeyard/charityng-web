@@ -16,7 +16,7 @@
             <base-input
               v-model="email"
               type="email"
-              :placeholder="$t('admin.loginScreen.form.email.placeholder')"
+              :placeHolder="$t('admin.loginScreen.form.email.placeholder')"
             />
           </div>
         </div>
@@ -25,7 +25,7 @@
             <base-input
               v-model="password"
               type="password"
-              :placeholder="$t('admin.loginScreen.form.password.placeholder')"
+              :placeHolder="$t('admin.loginScreen.form.password.placeholder')"
             />
           </div>
         </div>
