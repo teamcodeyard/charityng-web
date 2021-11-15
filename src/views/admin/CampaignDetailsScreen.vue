@@ -49,6 +49,15 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-2" v-for="status in 4" :key="`status-${status}`">
+        <button
+          class="btn btn-primary mt-2 mb-2"
+          @click="setStatus(status)"
+          v-t="`admin.campaignDetailsScreen.buttons.setStatus.${status}`"
+        />
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12 mt-5">
         <h3 v-t="'admin.campaignDetailsScreen.mediaList.title'"></h3>
       </div>
@@ -121,6 +130,7 @@ export default {
       fetchCampaign: 'admin.campaigns/fetchCampaign',
       uploadImages: 'admin.campaigns/uploadImages',
       createResource: 'admin.campaigns/createResource',
+      updateStatus: 'admin.campaigns/updateStatus',
     }),
     fileSelected(files) {
       const formData = new FormData();
@@ -134,48 +144,62 @@ export default {
         this.campaign = campaign;
       });
     },
+    setStatus(status) {
+      this.updateStatus({
+        campaignId: this.$route.params.campaignId,
+        status,
+      }).then((x) => {
+        this.campaign = x;
+      });
+    },
     showNewResourceModal() {
-      this.$eventBus.emit('showModal',[{
-        bind: {
-          is: FormBuilder,
-          fields: [
-            {
-              name: 'name',
-              label: this.$t(
-                'admin.campaignDetailsScreen.newModalForm.name.label',
-              ),
-              placeholder: this.$t(
-                'admin.campaignDetailsScreen.newModalForm.name.placeholder',
-              ),
-            },
-            {
-              name: 'type',
-              type: 'radio',
-              labels: [this.$t(
-                'admin.campaignDetailsScreen.newModalForm.type.label.0',
-              ),
-              this.$t(
-                'admin.campaignDetailsScreen.newModalForm.type.label.1',
-              )],
-              options: [0, 1],
-            },
-            {
-              name: 'quantity',
-              type: 'number',
-              label: this.$t(
-                'admin.campaignDetailsScreen.newModalForm.quantity.label',
-              ),
-              placeholder: this.$t(
-                'admin.campaignDetailsScreen.newModalForm.quantity.placeholder',
-              ),
-            },
-          ],
+      this.$eventBus.emit('showModal', [
+        {
+          /* eslint-disable */
+          bind: {
+            is: FormBuilder,
+            fields: [
+              {
+                name: 'name',
+                label: this.$t(
+                  'admin.campaignDetailsScreen.newModalForm.name.label'
+                ),
+                placeholder: this.$t(
+                  'admin.campaignDetailsScreen.newModalForm.name.placeholder'
+                ),
+              },
+              {
+                name: 'type',
+                type: 'radio',
+                labels: [
+                  this.$t(
+                    'admin.campaignDetailsScreen.newModalForm.type.label.0'
+                  ),
+                  this.$t(
+                    'admin.campaignDetailsScreen.newModalForm.type.label.1'
+                  ),
+                ],
+                options: [0, 1],
+              },
+              {
+                name: 'quantity',
+                type: 'number',
+                label: this.$t(
+                  'admin.campaignDetailsScreen.newModalForm.quantity.label'
+                ),
+                placeholder: this.$t(
+                  'admin.campaignDetailsScreen.newModalForm.quantity.placeholder'
+                ),
+              },
+            ],
+          },
+          /* eslint-enable */
+          on: {
+            submit: this.handleNewResource,
+            cancel: () => this.$eventBus.emit('hideModal'),
+          },
         },
-        on: {
-          submit: this.handleNewResource,
-          cancel: () => this.$eventBus.emit('hideModal'),
-        },
-      }]);
+      ]);
     },
     handleNewResource(payload) {
       this.createResource({

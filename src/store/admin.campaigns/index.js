@@ -45,5 +45,9 @@ export default {
       const response = await api.addResource(params.campaignId, params.resource);
       return response.data;
     },
+    updateStatus: async (ctx, params) => {
+      const response = await api.updateStatus(params.campaignId, params.status);
+      return response.data;
+    },
   },
 };

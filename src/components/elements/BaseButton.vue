@@ -1,5 +1,11 @@
 <template>
-  <div class="base-button" :style="style" @click="clicked">
+  <div
+    :class="`base-button d-flex justify-content-center align-items-center ${
+      isDisabled ? 'disable' : '?'
+    }`"
+    :style="style"
+    @click="clicked"
+  >
     {{ title }}
   </div>
 </template>
@@ -17,15 +23,20 @@ export default {
       default: () => ({
         color: '#FFF',
         'font-weight': 'bold',
-        border: '1px solid #0984e3',
         'border-radius': '8px',
-        'background-color': '#0984e3',
       }),
+    },
+    isDisabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {
     clicked() {
-      this.$emit('clicked');
+      if (!this.isDisabled) {
+        this.$emit('clicked');
+      }
     },
   },
 };
@@ -35,5 +46,12 @@ export default {
 .base-button {
   cursor: pointer;
   text-align: center;
+  padding: 12px 30px;
+  box-shadow: 0 0 20px 0 var(--secondaryColor) !important;
+  background-color: var(--secondaryColor) !important;
+  &.disable {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 }
 </style>

@@ -3,6 +3,7 @@
     <input
       :type="type"
       :placeholder="placeHolder"
+      :style="style"
       v-model="localValue"
       @keyup.enter="$emit('submit')"
     />
@@ -26,6 +27,10 @@ export default {
     modelValue: {
       type: String,
     },
+    style: {
+      type: Object,
+      required: false,
+    },
   },
   data() {
     return {
@@ -48,6 +53,7 @@ export default {
 .base-input {
   input {
     width: 100%;
+    outline: none;
   }
 }
 </style>

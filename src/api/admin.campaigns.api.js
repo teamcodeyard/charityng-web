@@ -7,4 +7,5 @@ export default {
   sendMessage: (campaignId, resourceId, fulfillmentId, message) => apiHelper.sendRequest('POST', `admin/campaigns/${campaignId}/resources/${resourceId}/fulfillments/${fulfillmentId}`, { message }),
   createCampaign: (campaign) => apiHelper.sendRequest('POST', 'admin/campaigns', { campaign }),
   addResource: (campaignId, resource) => apiHelper.sendRequest('POST', `admin/campaigns/${campaignId}/resources`, { resource }),
+  updateStatus: (campaignId, status) => apiHelper.sendRequest('POST', `admin/campaigns/${campaignId}/updateStatus`, { status }),
 };

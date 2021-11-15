@@ -15,9 +15,21 @@ const getAdminApiKey = () => {
   return undefined;
 };
 
+const getUserApiKey = () => {
+  const store = window.localStorage.getItem('store');
+  if (store) {
+    const jsonStore = JSON.parse(store);
+    return jsonStore.userApiKey;
+  }
+  return undefined;
+};
+
 const sendRequest = async (method, path, data) => {
   const url = `${BASE_URL}${path}`;
-  const apiKey = getAdminApiKey();
+  let apiKey = getUserApiKey();
+  if (path.startsWith('admin/')) {
+    apiKey = getAdminApiKey();
+  }
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',

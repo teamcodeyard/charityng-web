@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="basicStyles" v-if="organisation">
     <component :is="layoutComponent.bind.is" v-bind="layoutComponent.bind" />
     <modal
       v-if="modalContentComponents"
@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import LoggedOutAdminLayout from '@/views/layouts/LoggedOutAdminLayout.vue';
 import AdminLayout from '@/views/layouts/AdminLayout.vue';
+import PublicLayout from '@/views/layouts/PublicLayout.vue';
 import Modal from '@/components/elements/Modal.vue';
 
 export default {
@@ -23,18 +24,20 @@ export default {
     modalContentComponents: undefined,
   }),
   created() {
+    this.fetchOrganisation();
     this.$eventBus.on('showModal', this.showModal);
     this.$eventBus.on('hideModal', this.hideModal);
   },
   computed: {
     ...mapGetters({
       loggedInAdminUser: 'adminUsers/adminUser',
+      organisation: 'organisation/organisation',
     }),
     layoutComponent() {
-      if (this.loggedInAdminUser) {
+      if (this.$route.meta.isAdmin && this.loggedInAdminUser) {
         return this.adminLayoutComponent;
       }
-      return this.loggedOutAdminLayoutComponent;
+      return this.publicLayoutComponent;
     },
     loggedOutAdminLayoutComponent() {
       return {
@@ -50,8 +53,27 @@ export default {
         },
       };
     },
+    publicLayoutComponent() {
+      return {
+        bind: {
+          is: PublicLayout,
+        },
+      };
+    },
+    basicStyles() {
+      return {
+        '--primaryColor': `#${this.organisation.colors.primary}`,
+        '--secondaryColor': `#${this.organisation.colors.secondary}`,
+        '--primary': `#${this.organisation.colors.primary}`,
+        '--secondary': `#${this.organisation.colors.secondary}`,
+        '--contentMaxWidth': '1041px',
+      };
+    },
   },
   methods: {
+    ...mapActions({
+      fetchOrganisation: 'organisation/fetchOrganisation',
+    }),
     showModal(modalContentComponents) {
       this.modalContentComponents = modalContentComponents;
     },

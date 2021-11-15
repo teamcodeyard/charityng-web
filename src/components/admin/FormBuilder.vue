@@ -27,12 +27,12 @@
       </div>
     </div>
     <button
-      class="btn btn-primary"
+      class="btn btn-primary m-3"
       @click="submit"
       v-t="submitButtonTextKey"
     ></button>
     <button
-      class="btn btn-danger"
+      class="btn btn-danger m-3"
       @click="cancel"
       v-t="cancelButtonTextKey"
     ></button>
@@ -70,7 +70,7 @@ export default {
       this.$emit('cancel');
     },
     isInput(fieldType) {
-      return ['text', 'password', 'number', undefined].includes(fieldType);
+      return ['text', 'password', 'number', 'date', undefined].includes(fieldType);
     },
   },
 };

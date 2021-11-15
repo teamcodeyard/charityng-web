@@ -6,7 +6,7 @@
       :placeHolder="$t('campaignListScreen.search.placeholder')"
     />
     <button
-      class="btn"
+      class="btn btn-primary mt-2 mb-2"
       @click="showNewModal"
       v-t="'campaignListScreen.showNewModalButton.title'"
     />
@@ -122,6 +122,23 @@ export default {
                 ),
                 placeholder: this.$t(
                   'admin.campaignListScreen.newModalForm.description.placeholder'
+                ),
+              },
+              {
+                name: 'location',
+                type: 'text',
+                label: this.$t(
+                  'admin.campaignListScreen.newModalForm.location.label'
+                ),
+                placeholder: this.$t(
+                  'admin.campaignListScreen.newModalForm.location.placeholder'
+                ),
+              },
+              {
+                name: 'deadline',
+                type: 'date',
+                label: this.$t(
+                  'admin.campaignListScreen.newModalForm.deadline.label'
                 ),
               },
             ],

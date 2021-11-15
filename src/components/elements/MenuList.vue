@@ -33,4 +33,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.navbar-nav {
+  li {
+    font-family: Ubuntu;
+    font-size: 17px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: 0.68px;
+    text-align: left;
+    a {
+      color: #f9f9f9!important;
+    }
+  }
+}
 </style>

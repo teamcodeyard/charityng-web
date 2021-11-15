@@ -1,6 +1,11 @@
 <template>
   <div id="admin-layout">
-    <admin-navbar @logout="logout" />
+    <base-navbar
+      :navItems="navItems"
+      :buttonText="$t('admin.layout.navbar.logout')"
+      :organisation="organisation"
+      @buttonClicked="logout"
+    />
     <div id="admin-content">
       <router-view />
     </div>
@@ -8,13 +13,35 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import AdminNavbar from '@/components/admin/AdminNavbar.vue';
+import { mapActions, mapGetters } from 'vuex';
+import BaseNavbar from '@/components/elements/BaseNavbar.vue';
 
 export default {
   name: 'AdminLayout',
   components: {
-    AdminNavbar,
+    BaseNavbar,
+  },
+  computed: {
+    ...mapGetters({
+      loggedInAdminUser: 'adminUsers/adminUser',
+      organisation: 'organisation/organisation',
+    }),
+    navItems() {
+      return [
+        {
+          path: '/admin/users',
+          translationKey: 'admin.layout.navbar.userList',
+        },
+        {
+          path: '/admin/campaigns',
+          translationKey: 'admin.layout.navbar.campaignList',
+        },
+        {
+          path: '/admin/organisation',
+          translationKey: 'admin.layout.navbar.organisation',
+        },
+      ];
+    },
   },
   methods: {
     ...mapActions({

@@ -13,3 +13,36 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 8px;
 }
+
+.title-1 {
+  font-family: Ubuntu;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.57;
+  letter-spacing: normal;
+  text-align: left;
+  color: #242424;
+}
+
+.resource-type-label {
+  padding: 5px 14px 4.8px 14px;
+  background-color: #f64c71;
+  border-radius: 13px;
+  font-family: Ubuntu;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: var(--secondaryColor)!important;
+  border-color: var(--secondaryColor)!important;
+}
